@@ -1,82 +1,113 @@
 <template>
   <div class="container">
-    <h1>Form List Kegiatan</h1>
-
-    <div class="header">
-      <button @click="currentView = 'todos'">Todos</button>
-      <button @click="currentView = 'posts'">Posts</button>
-    </div>
-
-    <Todos v-if="currentView === 'todos'" />
-    <Posts v-if="currentView === 'posts'" />
+    <header class="header">
+      <nav class="menu">
+        <ul>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/todos">Todos</router-link></li>
+          <li><router-link to="/posts">Posts</router-link></li>
+          <li><router-link to="/albums">Albums</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-content">
+      <router-view></router-view>
+    </main>
+    <footer class="footer">
+      <p>© 2024 Web ini dirancang untuk memberikan pengalaman yang menyenangkan dan informatif.</p>
+    </footer>
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos.vue';
-import Posts from './components/Posts.vue';
-
+import Todos from './components/TodoList.vue';
+import Posts from './components/PostList.vue';
+import Albums from './components/AlbumList.vue';
 
 export default {
   components: {
     Todos,
-    Posts
-  },
-  data() {
-    return {
-      currentView: 'todos'
-    };
+    Posts,
+    Albums
   }
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right bottom, rgb(160, 157, 161), rgb(140, 101, 155), rgb(135, 48, 161));
+  background: url('https://w0.peakpx.com/wallpaper/797/647/HD-wallpaper-purple-background-design-vector-art-icon-and-graphics-for-modern-purple.jpg');
+  color: #000000;
 }
 
 .container {
-  background-color: rgba(191, 167, 201, 0.95);
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-  padding: 30px;
-  width: 80%;
-  max-width: 600px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: rgb(0, 0, 0);
-  text-align: center;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .header {
-  display: flex;
-  justify-content: space-around;
+  width: 100%;
+  background-color: rgba(191, 167, 201, 0.95);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
   margin-bottom: 20px;
 }
 
-.header button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #a262b6;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+.menu ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.header button:hover {
-  background-color: #020202;
+.menu li {
+  margin: 0 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: hwb(0 0% 100%);
+  border-radius: 6px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 1.5rem; /* Increase the font size */
+}
+
+.menu a:hover {
+  background-color: #9e68d3;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+.main-content {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.219);
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.footer {
+  width: 100%;
+  background-color: rgba(191, 167, 201, 0.95);
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.router-link-active {
+  background-color: #4b2c5e;
 }
 </style>
